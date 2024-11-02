@@ -1,0 +1,5 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+  //   ,"sourceMaps": true
+  //   // we can do this if we want the Source Map settings from here by default. Otherwise we have already did this in package.json. So, it's the 2nd method. We can choose anyone or write both of these. No problem of writing 2 times here and there.
+}
