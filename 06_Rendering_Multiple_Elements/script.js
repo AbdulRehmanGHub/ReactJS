@@ -150,3 +150,47 @@ fetch("https://dummyjson.com/products/search?q=phone")
     root.render(container);
   })
   .catch((error) => console.error("Error fetching products:", error));
+
+// // Method 3: Through Function
+
+// function Card(key, id, title, thumbnail, category, price) {
+//   return (
+//     <div key={id} className="card">
+//       <div className="image">
+//         <img src={thumbnail} alt={title} />
+//       </div>
+//       <div className="text">
+//         <h3>{title}</h3>
+//         <p>{category}</p>
+//         <p>
+//           ${price} &nbsp;
+//           <span>${(price * 1.5).toFixed(2)}</span>
+//         </p>
+//       </div>
+//     </div>
+//   );
+// }
+
+// const root = ReactDOM.createRoot(document.querySelector("#root"));
+
+// fetch("https://dummyjson.com/products/search?q=phone")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     root.render(
+//       <div className="container">
+//         <h2 className="heading">React Components</h2>
+//         <div className="cards">
+//           {data.products.map((product) => {
+//             return Card(
+//               product.key,
+//               product.id,
+//               product.title,
+//               product.thumbnail,
+//               product.category,
+//               product.price
+//             );
+//           })}
+//         </div>
+//       </div>
+//     );
+//   });
