@@ -1,0 +1,21 @@
+{
+  "name": "14_css_scope_react",
+  "version": "1.0.0",
+  "description": "<p> Once we used CSS with any of our React Component, it will apply to all the components. <br>\r <b>For example -- </b> If we use a className: \"card\" in Card component and apply some styling in CSS file and link it with Card component. We know the styling will apply and will be shown to us. Which is good. <br>\r <b>Problem -- </b>But the problem will arise when we create some other components and used the same className \"card\" on these components, then all the components with same className will take styling from CSS file \"card\" property. <br>\r </p>",
+  "main": "App.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "process": "^0.11.10"
+  }
+}
