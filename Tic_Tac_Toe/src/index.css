@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 100vw;
+  font-family: cursive, sans-serif, Arial, Helvetica;
+  font-size: 62.5%;
+  cursor: default;
+  background-color: #2f3542;
+  color: ghostwhite;
+}
+
+#gameName {
+  font-size: 2rem;
+  text-align: start;
+  padding-bottom: 2rem;
+  color: #7bed9f;
+}
+
+.container {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  padding: 1rem 0;
+}
+
+.game {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 6rem;
+  row-gap: 1rem;
+}
+
+.status {
+  margin: 1rem 0;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.game-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.board-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.board-row button {
+  width: 5rem;
+  height: 5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  padding: .2rem .4rem;
+  transition: ease-in-out .2s;
+  border: 1px solid #a1a1a1;
+  color: #2f3542;
+}
+
+.board-row button:hover {
+  background-color: #7bed9f;
+}
+
+.gameHistory {
+  text-align: center;
+  margin: .4rem 0;
+  font-size: .9rem;
+}
+
+.game-info ol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: .4rem;
+}
+
+ol li {
+  padding: .1rem .2rem;
+}
+
+li button {
+  transition: ease-in-out .3s;
+  border: 1px solid #a1a1a1;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  padding: .2rem .4rem;
+  color: #2f3542;
+}
+
+li button:hover {
+  background-color: #7bed9f;
+}
+
+@media (min-width: 1600px) {
+  #gameName {
+    font-size: 4rem;
+    padding-bottom: 2.4rem;
+  }
+
+  .status {
+    margin: 2rem 0;
+    font-size: 3.2rem;
+  }
+
+  .game{
+    column-gap: 14rem;
+  }
+
+  .board-row button {
+    width: 10rem;
+    height: 10rem;
+    font-size: 4rem;
+  }
+
+  .gameHistory {
+    margin: .6rem 0;
+    font-size: 2.2rem;
+  }
+
+  .game-info ol{
+    row-gap: 1.4rem;
+  }
+
+  li button {
+    padding: .4rem .6rem;
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    justify-content: flex-start;
+    padding: 2rem 0;
+  }
+
+  .game {
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+}
