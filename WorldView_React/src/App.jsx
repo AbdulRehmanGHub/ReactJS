@@ -16,7 +16,8 @@ const App = () => {
           <SearchBar setQuery={setQuery} />
           <Filter />
         </section>
-        <CountriesSection query={query} />
+        {query === "unmount" ? "" : <CountriesSection query={query} />}
+        {/* <CountriesSection query={query} /> */}
         {/* <CountryCard /> */}
       </main>
     </>
