@@ -2,7 +2,7 @@ const Filter = () => {
   return (
     <div className="filter">
       <select id="filterByRegion">
-        <option value="filter-by-region" selected disabled hidden>
+        <option defaultValue="filter-by-region" hidden>
           Filter by Region
         </option>
         <option value="Africa">Africa</option>

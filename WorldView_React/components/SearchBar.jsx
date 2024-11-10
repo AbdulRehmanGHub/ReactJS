@@ -1,7 +1,8 @@
-const SearchBar = () => {
+const SearchBar = ({ setQuery }) => {
   return (
     <div className="search">
       <input
+        onChange={(e) => setQuery(e.target.value.toLowerCase())}
         type="text"
         id="search-country"
         placeholder="Search for a country"

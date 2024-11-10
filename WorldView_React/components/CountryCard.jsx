@@ -1,23 +1,30 @@
-const CountryCard = () => {
+export default function CountryCard({
+  name,
+  flag,
+  population,
+  region,
+  capital,
+}) {
   return (
     <div className="country_box">
-      <a href="#" className="countryCard">
-        <img src="./img/pk flag.png" alt="img" />
+      <a
+        href={`/country.html?name=${name}`}
+        className="countryCard"
+      >
+        <img src={flag} alt={name + "flag"} />
         <div className="box-text">
-          <h3>United States of America</h3>
+          <h3>{name}</h3>
           <p>
-            Population: <span> 25,00,00,000</span>
+            Population: <span>{population}</span>
           </p>
           <p>
-            Region: <span> Asia</span>
+            Region: <span>{region}</span>
           </p>
           <p>
-            Capital: <span> Islamabad</span>
+            Capital: <span>{capital}</span>
           </p>
         </div>
       </a>
     </div>
   );
-};
-
-export default CountryCard;
+}
