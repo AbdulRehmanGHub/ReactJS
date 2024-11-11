@@ -1,25 +1,11 @@
-import { useState } from "react";
-import Header from "../components/Header.jsx";
-import SearchBar from "../components/SearchBar.jsx";
-import Filter from "../components/Filter.jsx";
-// import CountryCard from "../components/CountryCard.jsx";
-import CountriesSection from "../components/CountriesSection.jsx";
-import "./index.css";
+import { Outlet } from "react-router-dom";
+import Header from "../components/Header";
 
 const App = () => {
-  const [query, setQuery] = useState("");
   return (
     <>
       <Header />
-      <main>
-        <section className="search-filter">
-          <SearchBar setQuery={setQuery} />
-          <Filter />
-        </section>
-        {query === "unmount" ? "" : <CountriesSection query={query} />}
-        {/* <CountriesSection query={query} /> */}
-        {/* <CountryCard /> */}
-      </main>
+      <Outlet />
     </>
   );
 };
