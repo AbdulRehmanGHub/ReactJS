@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom";
 import styles from "./CountryDetail.module.css";
 
 export default function CountryDetail() {
@@ -7,48 +7,57 @@ export default function CountryDetail() {
   const [countryData, setCountryData] = useState(null);
   const [borderCountries, setBorderCountries] = useState([]);
   const [pageNotFound, setPageNotFound] = useState(false);
+  const { state } = useLocation();
+
+  function updateCountryData(country) {
+    setCountryData({
+      c_name: country.name.common,
+      c_flag: country.flags.svg,
+      c_native_name:
+        Object.values(country.name.nativeName)[0]?.common ||
+        country.name.common,
+      c_population: country.population.toLocaleString(),
+      c_region: country.region,
+      c_subregion: country.subregion,
+      c_capital: country.capital ? country.capital.join(", ") : "N/A",
+      c_tld: country.tld ? country.tld.join(", ") : "N/A",
+      c_currency: country.currencies
+        ? Object.values(country.currencies)
+            .map((currency) => currency.name)
+            .join(", ")
+        : "N/A",
+      c_languages: country.languages
+        ? Object.values(country.languages).join(", ")
+        : "N/A",
+      c_border: country.borders || [],
+    });
+
+    // If borders exist, fetch their full names
+    if (country.borders) {
+      Promise.all(
+        country.borders.map((border) =>
+          fetch(`https://restcountries.com/v3.1/alpha/${border}`)
+            .then((res) => res.json())
+            .then(([borderCountry]) => borderCountry.name.common)
+        )
+      )
+        .then((borderNames) => setBorderCountries(borderNames))
+        .catch((err) => console.log(err));
+    } else {
+      setBorderCountries([]);
+    }
+  }
 
   useEffect(() => {
-    // Fetch main country data
+    if (state) {
+      updateCountryData(state);
+      return;
+    }
+
     fetch(`https://restcountries.com/v3.1/name/${countryName}?fullText=true`)
       .then((res) => res.json())
       .then(([country]) => {
-        setCountryData({
-          c_name: country.name.common,
-          c_flag: country.flags.svg,
-          c_native_name:
-            Object.values(country.name.nativeName)[0]?.common ||
-            country.name.common,
-          c_population: country.population.toLocaleString(),
-          c_region: country.region,
-          c_subregion: country.subregion,
-          c_capital: country.capital ? country.capital.join(", ") : "N/A",
-          c_tld: country.tld ? country.tld.join(", ") : "N/A",
-          c_currency: country.currencies
-            ? Object.values(country.currencies)
-                .map((currency) => currency.name)
-                .join(", ")
-            : "N/A",
-          c_languages: country.languages
-            ? Object.values(country.languages).join(", ")
-            : "N/A",
-          c_border: country.borders || [],
-        });
-
-        // If borders exist, fetch their full names
-        if (country.borders) {
-          Promise.all(
-            country.borders.map((border) =>
-              fetch(`https://restcountries.com/v3.1/alpha/${border}`)
-                .then((res) => res.json())
-                .then(([borderCountry]) => borderCountry.name.common)
-            )
-          )
-            .then((borderNames) => setBorderCountries(borderNames))
-            .catch((err) => console.log(err));
-        } else {
-          setBorderCountries([]);
-        }
+        updateCountryData(country);
       })
       .catch((err) => {
         setPageNotFound(true);

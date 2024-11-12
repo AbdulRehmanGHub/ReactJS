@@ -6,10 +6,11 @@ export default function CountryCard({
   population,
   region,
   capital,
+  country,
 }) {
   return (
     <div className="country_box">
-      <Link to={`/${name}`} className="countryCard">
+      <Link to={`/${name}`} className="countryCard" state={country}>
         <img src={flag} alt={name + "flag"} />
         <div className="box-text">
           <h3>{name}</h3>
