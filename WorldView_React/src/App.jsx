@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../components/Header";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 const App = () => {
   const [isDark, setIsDark] = useState(
@@ -8,17 +9,16 @@ const App = () => {
   );
 
   useEffect(() => {
-    // Set initial theme based on localStorage
     if (isDark) {
       document.body.classList.add("dark");
     }
   }, [isDark]);
 
   return (
-    <>
-      <Header theme={[isDark, setIsDark]} />
-      <Outlet context={[isDark, setIsDark]} />
-    </>
+    <ThemeContext.Provider value={[isDark, setIsDark]}>
+      <Header />
+      <Outlet />
+    </ThemeContext.Provider>
   );
 };
 

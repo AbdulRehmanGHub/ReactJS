@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import CountryCard from "./CountryCard";
 import CountryCardShimmer from "./CountryCardShimmer.jsx";
+import PropTypes from "prop-types";
 
 export default function CountriesSection({ query }) {
   const [allCountries, setAllCountries] = useState([]);
@@ -19,8 +20,10 @@ export default function CountriesSection({ query }) {
       ) : (
         <section className="data">
           {allCountries
-            .filter((country) =>
-              country.name.common.toLowerCase().includes(query)
+            .filter(
+              (country) =>
+                country.name.common.toLowerCase().includes(query) ||
+                country.region.toLowerCase().includes(query)
             )
             .map((country) => {
               return (
@@ -40,3 +43,7 @@ export default function CountriesSection({ query }) {
     </>
   );
 }
+
+CountriesSection.propTypes = {
+  query: PropTypes.func.isRequired,
+};

@@ -11,24 +11,18 @@ export default function CountryDetail() {
 
   function updateCountryData(country) {
     setCountryData({
-      c_name: country.name.common,
+      c_name: country.name.common || country.name,
+      c_native_name: Object.values(country.name.nativeName || {})[0]?.common,
       c_flag: country.flags.svg,
-      c_native_name:
-        Object.values(country.name.nativeName)[0]?.common ||
-        country.name.common,
       c_population: country.population.toLocaleString(),
       c_region: country.region,
       c_subregion: country.subregion,
       c_capital: country.capital ? country.capital.join(", ") : "N/A",
       c_tld: country.tld ? country.tld.join(", ") : "N/A",
-      c_currency: country.currencies
-        ? Object.values(country.currencies)
-            .map((currency) => currency.name)
-            .join(", ")
-        : "N/A",
-      c_languages: country.languages
-        ? Object.values(country.languages).join(", ")
-        : "N/A",
+      c_currency: Object.values(country.currencies || {})
+        .map((currency) => currency.name)
+        .join(", "),
+      c_languages: Object.values(country.languages || {}).join(", "),
       c_border: country.borders || [],
     });
 
@@ -63,7 +57,7 @@ export default function CountryDetail() {
         setPageNotFound(true);
         console.log(err);
       });
-  }, [countryName]);
+  }, [countryName, state]);
 
   if (pageNotFound) {
     return (

@@ -1,11 +1,13 @@
-const Header = ({ theme }) => {
-  const [isDark, setIsDark] = theme;
+import { useContext } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
+
+function Header() {
+  const [isDark, setIsDark] = useContext(ThemeContext);
 
   const toggleTheme = () => {
     setIsDark(!isDark);
     localStorage.setItem("isDarkMode", JSON.stringify(!isDark));
 
-    // Toggle `dark` class on body
     document.body.classList.toggle("dark", !isDark);
   };
 
@@ -20,6 +22,6 @@ const Header = ({ theme }) => {
       </p>
     </header>
   );
-};
+}
 
 export default Header;
